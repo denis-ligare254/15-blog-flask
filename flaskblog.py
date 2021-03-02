@@ -1,31 +1,32 @@
-from flask import Flask ,render_template
-app=Flask(__name__)
+from flask import Flask, render_template, url_for
+app = Flask(__name__)
 
-posts=[
+posts = [
     {
-        'author':'denis ligare',
-        'date_posted':'2nd April 2020',
-        'title':'the river and the source',
-        'content':'sssljcsd hgfd jsdhdjsd'
+        'author': 'Corey Schafer',
+        'title': 'Blog Post 1',
+        'content': 'First post content',
+        'date_posted': 'April 20, 2018'
     },
     {
-        'author':'moureen Khavere',
-        'date_posted':'2nd December 2020',
-        'title':'Kit mikai',
-        'content':'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum '
-
+        'author': 'Jane Doe',
+        'title': 'Blog Post 2',
+        'content': 'Second post content',
+        'date_posted': 'April 21, 2018'
     }
 ]
 
+
 @app.route("/")
-def index():
-    return render_template("about.html",posts=posts)
+@app.route("/home")
+def home():
+    return render_template('home.html', posts=posts)
 
 
 @app.route("/about")
 def about():
-    return "hellow world!S here is about"
+    return render_template('about.html', title='About')
 
 
-if __name__=="__main__":
+if __name__ == '__main__':
     app.run(debug=True)
